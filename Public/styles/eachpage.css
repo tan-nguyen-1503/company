@@ -1,0 +1,60 @@
+.container a{
+    color: #0363cd !important;
+    text-decoration: none !important;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+
+}
+.container a:hover{
+    color: #008744 !important;
+}
+.btnshow:hover
+{
+    background-color: red !important;
+}
+.btnshow{
+    display: none !important;
+}
+.ssd:hover .btnshow{
+  display: block !important;
+  color: white !important;
+}
+.card{
+    border: none !important;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+.card-img-top{
+    margin:  0px !important;
+    padding: 0px !important;
+}
+.card-body{
+    padding-top: 0px !important;
+    margin-bottom: 0px !important;;
+}
+.price{
+    color: #008744;
+    font-weight: 700;
+    padding-top: 0px !important;
+}
+.card-text{
+    margin-top: 0px !important;
+    color: #0363cd !important;
+    font-weight: 500 !important;
+    margin-bottom: 0px !important;
+}
+.start{
+    margin-top: -15px !important;
+}
+.checked {
+    color: orange;
+}
+.listshow{
+    color: white !important;
+    font-weight: 700;
+
+}
+.listshow:hover{
+    background: red !important;
+}

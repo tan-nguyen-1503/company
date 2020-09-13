@@ -1,0 +1,138 @@
+html{
+    background-color: #F1F0F1;
+}
+body{
+    background-color: white;
+    font-size: 14px;
+}
+
+.img-style{
+    width: 100%;
+    height: 550px;
+}
+.mb-30{
+    margin-bottom: 30px;
+}
+
+.mb-10{
+    margin-bottom: 10px;
+}
+
+.mt-80{
+    margin-top: 80px;
+}
+
+.mt-50{
+    margin-top: 50px;
+}
+
+.mt-30{
+    margin-top: 30px;
+}
+
+#carouselExampleIndicators{
+    margin: 0;
+    padding: 0;
+}
+
+@media (min-width: 720px) { 
+    #tensanpham{
+        margin-left: 50px
+    }
+    .chitiet{
+        margin-left: 50px !important;
+        margin-top: 30px !important;
+    
+    }
+}
+
+.fix-button{
+    background-color:#646F73 !important;
+}
+.fix-button:hover{
+    background-color: orange !important;
+}
+
+
+
+.fix-stars{
+    margin-left: 60px;
+    margin-top: 0px;
+}
+
+.fix-stars .fa{
+    font-size: 10px;
+}
+
+.checked{
+    color: orange;
+}
+
+.review-no{
+    font-size: 12px;
+    color: black !important;
+    background-color:#F4F4F3 ;
+}
+
+.stars a{
+    text-decoration: none !important;
+}
+
+
+
+#muangay{
+    margin-right: 10px !important;
+}
+
+.fix-select a{
+    margin-right: 10px !important;
+}
+
+.table .fas{
+    color: orange;
+}
+
+.table th{
+    color: blue;
+    font-style: italic;
+}
+
+.h5-fix {
+    background-color: white;
+    width: 100%;
+    height: 40px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    color: #10A9CC;
+}
+
+.fix-table{
+    margin-bottom: 30px;
+}
+
+.progress p{
+    font-size: 13px;
+}
+@media (max-width:768px){
+    .chitietsanpham img{
+        width: 500px !important;
+    }
+}
+
+@media (max-width:320px){
+    .chitietsanpham img{
+        width: 200px !important;
+    }
+}
+
+@media (max-width:480px){
+    .chitietsanpham img{
+        width: 300px !important;
+    }
+}
+
+@media (max-width:600px){
+    .chitietsanpham img{
+        width: 450px !important;
+    }
+}

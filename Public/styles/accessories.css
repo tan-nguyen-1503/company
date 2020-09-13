@@ -1,0 +1,135 @@
+.container a{
+  color: #0363cd !important;
+  text-decoration: none !important;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 500;
+
+}
+.container a:hover{
+  color: #008744 !important;
+}
+.cover {
+  padding-left: 0px !important;
+  border: none;
+  border-bottom: solid 3px #008744;
+}
+.diskleft {
+  padding-left: 0px !important;
+}
+#usb,
+#ssd,
+#disk,
+#hddssd {
+  color: #fff !important;
+  background-color: #008744;
+  font-size: 1.5rem;
+  padding: 0px 15px;
+  text-decoration: none;
+}
+
+.banner {
+  opacity: 1;
+  display: block;
+  backface-visibility: hidden;
+  overflow: hidden;
+  margin-top: 20px;
+}
+.banner:hover img {
+  overflow: hidden !important;
+  opacity: 0.5;
+  transition: 2s;
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+#hotdeal {
+  color: red;
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 50px;
+}
+#branch {
+  color: red;
+  font-weight: 700;
+  font-size: 30px !important;
+}
+#branch:hover,
+#hotdeal:hover {
+  text-decoration: none;
+  color: #008744;
+}
+.sp {
+  padding: 30px 0px;
+}
+
+#buy:hover,
+.btndisk:hover {
+  background-color: red !important;
+}
+#text:hover #buy {
+  display: block;
+}
+.card-img-top:hover {
+  cursor: pointer !important;
+}
+.btnshow{
+  display: none !important;
+  margin: 0px !important;
+}
+.btnshow:hover {
+  background-color: red !important;
+}
+
+.sale:hover .btnshow{
+  display: block !important;
+}
+
+/* End Top Sale */
+.card {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  border: none !important;
+  padding-top: 0px !important;
+  margin: 0px !important;
+}
+#diska {
+  color: #0363cd !important;
+  text-decoration: none;
+}
+#diska:hover {
+  color: #008744 !important;
+}
+.btndisk{
+  color: white !important;
+}
+.card{
+  border: none !important;
+  padding: 0px !important;
+  margin: 0px !important;
+}
+.card-img-top{
+  margin:  0px !important;
+  padding: 0px !important;
+}
+.card-body{
+  padding-top: 0px !important;
+}
+.price{
+  color: #008744;
+  font-weight: 700;
+  padding-top: 0px !important;
+}
+.card-text{
+  margin-top: 0px !important;
+  color: #0363cd !important;
+  font-weight: 500 !important;
+  margin-bottom: 0px !important;
+}
+.checked{
+  color: orange;
+}
+.start{
+  margin-top: -2px !important;
+}

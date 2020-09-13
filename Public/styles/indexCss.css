@@ -1,0 +1,408 @@
+body {
+  overflow-x: hidden;
+}
+.navbar {
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+th a{
+  font-size: 1rem;
+  font-weight: 700;
+}
+.btn,
+.searchbox {
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.1rem;
+}
+.btn-outline-light:hover {
+  background-color: #008744 !important;
+}
+.navbar-brand img {
+  height: 3rem;
+}
+.navbar-nav li {
+  padding-right: 0.5rem;
+}
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff !important;
+}
+.navbar-dark .navbar-nav .nav-link:active,
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #008744 !important;
+}
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.dropdown > .dropdown-toggle:active {
+  pointer-events: none;
+}
+th a {
+  color: black;
+}
+tbody tr a {
+  color: gray;
+}
+table a:hover {
+  color: #008744;
+  text-decoration: none;
+}
+.dropdown-menu{
+  min-width: 100px !important;
+}
+.account a{
+  font-weight: 500;
+  color: black;
+}
+.account a:hover{
+  text-decoration: none;
+  color: #008744;
+}
+.carousel-item img {
+  z-index: 1 !important;
+  height: 100vh !important;
+}
+.carousel-control-prev,
+.carousel-control-next {
+  z-index: 4 !important;
+}
+.carousel-caption {
+  position: absolute;
+  top: 30%;
+  text-transform: uppercase;
+  right: 0;
+  left: 0;
+}
+.overlay {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.carousel-caption p {
+  font-size: 1.5rem;
+  font-weight: 1000 !important;
+  letter-spacing: 0.3rem;
+  text-shadow: 1rem 1rem 1rem black;
+  padding-bottom: 1rem;
+} 
+.carousel-caption h4 {
+  letter-spacing: 0.3rem;
+  text-shadow: 0.1rem 0.1 rem 0.5rem black;
+  padding-bottom: 1.2rem;
+}
+.carousel-caption p:hover {
+  color: #008744 !important;
+}
+.btn {
+  border-width: large;
+  border-radius: 0;
+  font-size: 1.1rem;
+}
+.footeritems {
+  color: gray !important;
+  text-decoration: none !important;
+}
+.footeritems:hover {
+  color: #008744 !important;
+}
+.carousel-caption {
+  z-index: 5 !important;
+}
+.carousel-caption .heading a {
+  font-size: 40px;
+  color: #fff;
+  text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+  font-weight: 600;
+  letter-spacing: 7px;
+  text-decoration: none;
+}
+.carousel-caption .heading a:hover {
+  color: #008744;
+}
+.carousel-caption .sub {
+  color: #fff;
+  text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+  font-weight: 200;
+  letter-spacing: 7px;
+  font-size: 23px;
+}
+
+.teammember *  {
+  text-align: center;
+}
+.teammember a:hover{
+  text-decoration: none;
+  color: #008744;
+}
+.social a{
+  width: 34px;
+  height: 34px;
+  display: inline-block;
+  text-align: center;
+  line-height: 34px;
+  border: 1px solid #292825 !important;
+  border-radius: 50% !important;
+  margin-right: 5px;
+}
+.social a:hover{
+  background-color: yellow;
+  color: black;
+}
+.breadcrumb-item{
+  color: black !important;
+  font-weight: 700;
+}
+.breadcrumb-item:hover a{
+  text-decoration: none !important;
+  color: #008744 !important;
+}
+
+#signupForm{
+  width: 80%;
+  margin: auto;
+  min-height: 500px;
+  z-index: 5;
+  box-shadow: 0px 5px 10px 0px gray;
+  border-radius: 35px;
+}
+
+#register-form{
+  margin-left: 5%;
+}
+#name, #email, #password, #re_pass{
+  border:none !important;
+  line-height: 40px;
+}
+.formElement{
+  border-bottom: solid 1px rgb(158, 147, 147) !important;
+  width: 80%;
+}
+.formElement input{
+  outline: none !important;
+  background-color: transparent;
+}
+.form-title{
+  font-size: 2.5em;
+  font-weight: 700;
+}
+.btn-account{
+  font-weight: 700 !important;
+  padding: 10px 20px !important;
+}
+.imgdiv{
+  width: 100%;
+  padding-top: 50px !important;
+}
+.signup-image-link{
+  text-align: center !important;
+  font-size: 1.2em;
+  font-weight: 500;
+  text-decoration: none !important;
+  padding-bottom: 20px !important ;
+}
+.signup-image-link:hover{
+  color:red;
+}
+.socials{
+  list-style-type: none;
+}
+
+/* Each Page Test */
+
+.btnshow:hover
+{
+    background-color: red !important;
+}
+.btnshow{
+    display: none !important;
+}
+.ssd:hover .btnshow{
+  display: block !important;
+  color: white !important;
+}
+.card{
+    border: none !important;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+.card-img-top{
+    margin:  0px !important;
+    padding: 0px !important;
+}
+.card-body{
+    padding-top: 0px !important;
+    margin-bottom: 0px !important;;
+}
+.price{
+    color: #008744;
+    font-weight: 700;
+    padding-top: 0px !important;
+}
+.card-text{
+    margin-top: 0px !important;
+    color: #0363cd !important;
+    font-weight: 500 !important;
+    margin-bottom: 0px !important;
+}
+.start{
+    margin-top: -10px !important;
+}
+.checked {
+    color: orange;
+}
+.listshow{
+    color: white !important;
+    font-weight: 700;
+
+}
+.listshow:hover{
+    background: red !important;
+}
+
+/* ACCESSORIES */
+
+.cover {
+  padding-left: 0px !important;
+  border: none;
+  border-bottom: solid 3px #008744;
+}
+.diskleft {
+  padding-left: 0px !important;
+}
+#usb,
+#ssd,
+#disk,
+#hddssd {
+  color: #fff !important;
+  background-color: #008744;
+  font-size: 1.5rem;
+  padding: 0px 15px;
+  text-decoration: none;
+}
+
+.banner {
+  opacity: 1;
+  display: block;
+  backface-visibility: hidden;
+  overflow: hidden;
+  margin-top: 20px;
+}
+.banner:hover img {
+  overflow: hidden !important;
+  opacity: 0.5;
+  transition: 2s;
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+#hotdeal {
+  color: red;
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 50px;
+}
+#branch {
+  color: red;
+  font-weight: 700;
+  font-size: 30px !important;
+}
+#branch:hover,
+#hotdeal:hover {
+  text-decoration: none;
+  color: #008744;
+}
+.sp {
+  padding: 30px 0px;
+}
+
+#buy:hover,
+.btndisk:hover {
+  background-color: red !important;
+}
+#text:hover #buy {
+  display: block;
+}
+.card-img-top:hover {
+  cursor: pointer !important;
+}
+.btnshow{
+  display: none !important;
+  margin: 0px !important;
+}
+.btnshow:hover {
+  background-color: red !important;
+}
+
+.sale:hover .btnshow{
+  display: block !important;
+}
+
+/* End Top Sale */
+.card {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  border: none !important;
+  padding-top: 0px !important;
+  margin: 0px !important;
+}
+#diska {
+  color: #0363cd !important;
+  text-decoration: none;
+}
+#diska:hover {
+  color: #008744 !important;
+}
+.btndisk{
+  color: white !important;
+}
+.card{
+  border: none !important;
+  padding: 0px !important;
+  margin: 0px !important;
+}
+.card-img-top{
+  margin:  0px !important;
+  padding: 0px !important;
+}
+.card-body{
+  padding-top: 0px !important;
+}
+.price{
+  color: #008744;
+  font-weight: 700;
+  padding-top: 0px !important;
+}
+.card-text{
+  margin-top: 0px !important;
+  color: #0363cd !important;
+  font-weight: 500 !important;
+  margin-bottom: 0px !important;
+}
+.checked{
+  color: orange;
+}
+.start{
+  margin-top: -10px !important;
+}
+
+.product_name{
+  text-decoration: none !important;
+  color: black !important;
+}
+.product_name:hover{
+  color: #008744 !important;
+}
+#leftcontent a{
+  color: black;
+  font-weight: 500;
+  text-decoration: none;
+}
+#leftcontent a:hover{
+  color: #008744;
+}
