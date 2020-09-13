@@ -1,5 +1,9 @@
+<?php
+require './LayOut/header.php';
+?>
+
 <div class="container" style="padding:150px 0px">
-    <div class="row" id="signupForm">
+    <div class="row">
         <div class="imagesform col-lg-6 col-md-12 col-sm-12 col-12">
             <div class="row d-flex flex-row justify-content-center">
                 <div  class="imgdiv d-flex flex-row justify-content-center">
@@ -11,7 +15,7 @@
             </div>
         </div>
         <div class="formpart col-lg-6 col-md-12 col-sm-12 col-12 mt-5">
-            <form method="POST" class="login-form" id="register-form">
+            <form method="POST" class="login-form" id="login-form">
                 <h2 class="form-title mb-3">Login</h2>
                 <p style="color:red;font-weight:700" id="error"></p>
                 <div class="form-group formElement">
@@ -34,13 +38,13 @@
 </div>
 
 <script>
-    $('#register-form').submit(function (e){
+    $('#login-form').submit(function (e){
         e.preventDefault();
         $.ajax({
             url: "login.php",
             type: "POST",
             dataType: "application/json",
-            data: $("#register-form").serializeFormJSON(),
+            data: $(this).serializeFormJSON(),
 
             complete: function (xhr, status){
                 if (status !== 'error'){
@@ -52,3 +56,7 @@
         });
     });
 </script>
+
+<?php
+require './LayOut/footer.php';
+?>

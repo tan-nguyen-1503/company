@@ -51,9 +51,11 @@ class PostComment
         return $response;
     }
 
-    public static function getByPage($pageNum, $pageSize){
+    public static function getByPostByPage($postId,$pageNum, $pageSize){
         $offset = $pageNum * $pageSize;
-        $query = "SELECT * FROM post_comment ORDER BY comment_time DESC LIMIT $pageSize OFFSET $offset";
+        $query = "SELECT p.*, u.name FROM post_comment p LEFT JOIN user u on u.id = p.user_id 
+                    WHERE post_id = $postId
+                    ORDER BY comment_time DESC LIMIT $pageSize OFFSET $offset";
         $result = runQuery($query);
         $response = [];
         while ($row = $result->fetch_object()) {

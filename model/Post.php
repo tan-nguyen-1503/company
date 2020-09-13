@@ -9,7 +9,7 @@ class Post
     public $author; //name of author
     public $date;
     public $image;
-    private $is_active = true;
+    public $is_active = true;
 
     #constructor from db response
     public function __construct($object)
@@ -49,7 +49,7 @@ class Post
             http_response_code(404);
             die();
         }
-        return new Product($result->fetch_object());
+        return new Post($result->fetch_object());
     }
 
     public static function getAll()
@@ -58,7 +58,7 @@ class Post
         $result = runQuery($query);
         $response = [];
         while ($row = $result->fetch_object()) {
-            array_push($response, new Product($row));
+            array_push($response, new Post($row));
         }
         return $response;
     }
@@ -69,7 +69,7 @@ class Post
         $result = runQuery($query);
         $response = [];
         while ($row = $result->fetch_object()) {
-            array_push($response, new Product($row));
+            array_push($response, new Post($row));
         }
         return $response;
     }
@@ -80,7 +80,7 @@ class Post
         $result = runQuery($query);
         $response = [];
         while ($row = $result->fetch_object()) {
-            array_push($response, new Product($row));
+            array_push($response, new Post($row));
         }
         return $response;
     }

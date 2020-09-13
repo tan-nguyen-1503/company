@@ -17,7 +17,7 @@ class About
     }
 
     public function update(){
-        $query = "UPDATE about SET about = $this->about WHERE id = 1";
+        $query = "UPDATE about SET about = '$this->about' WHERE id = 1";
         runQuery($query);
     }
 }

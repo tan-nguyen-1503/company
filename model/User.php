@@ -40,14 +40,14 @@ class User
 
     public function update()
     {
-        $query = "UPDATE user SET name = $this->name, date_of_birth = $this->date_of_birth, avatar = $this->avatar
+        $query = "UPDATE user SET name = '$this->name', date_of_birth = '$this->date_of_birth', avatar = '$this->avatar'
                 WHERE id = $this->id";
         runQuery($query);
     }
 
     public function changePassword($password)
     {
-        $query = "UPDATE user SET password = $password WHERE id =$this->id";
+        $query = "UPDATE user SET password = '$password' WHERE id = $this->id";
         runQuery($query);
     }
 
@@ -111,4 +111,18 @@ class User
             die(json_encode("User is inactivate"));
         }
     }
+
+    public function checkOldPassword($password){
+        return $this->password == $password;
+    }
+
+    public function validatePassword($password, $confirmPassword){
+        if ($password != $confirmPassword){
+            die(json_encode("Two password does not match"));
+        }
+        if (strlen($password) < 8){
+            die(json_encode("Password length must be larger than 8"));
+        }
+    }
+
 }

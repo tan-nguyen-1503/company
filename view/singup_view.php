@@ -47,7 +47,7 @@
             url: "signup.php",
             type: "POST",
             dataType: "application/json",
-            data: $("#register-form").serializeFormJSON(),
+            data: $(this).serializeFormJSON(),
 
             complete: function (xhr, status){
                 if (status !== 'error'){
