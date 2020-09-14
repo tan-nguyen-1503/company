@@ -17,10 +17,12 @@ class User
     {
         if (isset($object->id)) //create -> no id
             $this->id = $object->id;
-        $this->name = $object->name;
+        if (isset($object->name))
+            $this->name = $object->name;
         if (isset($object->password)) // update -> no password
             $this->password = $object->password;
-        $this->email = $object->email;
+        if (isset($object->email))
+            $this->email = $object->email;
         if (isset($object->date_of_birth))
             $this->date_of_birth = $object->date_of_birth;
         if (isset($object->avatar))
@@ -33,50 +35,51 @@ class User
 
     public function create()
     {
-        $query = "INSERT INTO user (`name`, `password`, `email`, `date_of_birth`, `avatar`, `is_admin`, `is_active`)
-            VALUES ('$this->name', '$this->password', '$this->email', '$this->date_of_birth', '$this->avatar', '$this->is_admin', '$this->is_active')";
-        runQuery($query);
+        $query = "INSERT INTO user (`name`, `password`, `email`) VALUES (?, ?, ?)";
+        $param = ["sss", &$this->name, &$this->password, &$this->email];
+        $result = runQuery($query, $param, false);
     }
 
-    public function update()
+    public function update($isAdmin = false)
     {
-        $query = "UPDATE user SET name = '$this->name', date_of_birth = '$this->date_of_birth', avatar = '$this->avatar'
-                WHERE id = $this->id";
-        runQuery($query);
+        if ($isAdmin){
+            // change password & isActive.
+            $query = "UPDATE user SET password = ?, is_active = ? WHERE id = ?";
+            $param = ["sii", &$this->password, &$this->is_active, &$this->id];
+        }else{
+            $query = "UPDATE user SET name = ?, date_of_birth = ?, avatar = ? WHERE id = ?";
+            $param = ["sssi", &$this->name, &$this->date_of_birth, &$this->avatar, &$this->id];
+        }
+        if (!runQuery($query, $param, false)) {
+           badRequestResponse("Unexisting user");
+        }
     }
 
     public function changePassword($password)
     {
-        $query = "UPDATE user SET password = '$password' WHERE id = $this->id";
-        runQuery($query);
+        $query = "UPDATE user SET password = ? WHERE id = ?";
+        $param = ["si", &$password, &$this->id];
+        if (runQuery($query, $param, false) == 0) {
+            badRequestResponse("Unexisting user");
+        }
     }
 
     public static function getById($id)
     {
-        $query = "SELECT * FROM user WHERE id = $id";
-        $result = runQuery($query);
-        if (mysqli_num_rows($result) == 0) {
-            http_response_code(404);
-            die();
+        $query = "SELECT * FROM user WHERE id = ?";
+        $param = ["i", &$id];
+        $result = runQuery($query, $param);
+        if ($result->num_rows == 0) {
+            badRequestResponse("Unexisting user");
         }
         return new User($result->fetch_object());
     }
 
-    public static function getAll()
-    {
-        $query = "SELECT * FROM user";
-        $result = runQuery($query);
-        $response = [];
-        while ($row = $result->fetch_object()) {
-            array_push($response, new User($row));
-        }
-        return $response;
-    }
-
     public static function getByPage($pageNum, $pageSize){
         $offset = $pageNum * $pageSize;
-        $query = "SELECT * FROM user LIMIT $pageSize OFFSET $offset";
-        $result = runQuery($query);
+        $query = "SELECT * FROM user LIMIT ? OFFSET ?";
+        $param = ["ii", $pageSize, $offset];
+        $result = runQuery($query, $param);
         $response = [];
         while ($row = $result->fetch_object()) {
             array_push($response, new User($row));
@@ -90,15 +93,10 @@ class User
         return $result->fetch_object()->total;
     }
 
-    public static function delete($id)
-    {
-        $query = "UPDATE user SET is_active = false WHERE id = $id";
-        runQuery($query);
-    }
-
     public static function login($email, $password){
-        $query = "SELECT * FROM user WHERE email = '$email' AND password = '$password'";
-        $result = runQuery($query);
+        $query = "SELECT * FROM user WHERE email = ? AND password = ?";
+        $param = ['ss', &$email, &$password];
+        $result = runQuery($query, $param);
         if (mysqli_num_rows($result) == 0) {
             http_response_code(401);
             die(json_encode("Wrong username or password"));
@@ -118,11 +116,12 @@ class User
 
     public function validatePassword($password, $confirmPassword){
         if ($password != $confirmPassword){
+            http_response_code(400);
             die(json_encode("Two password does not match"));
         }
         if (strlen($password) < 8){
+            http_response_code(400);
             die(json_encode("Password length must be larger than 8"));
         }
     }
-
 }

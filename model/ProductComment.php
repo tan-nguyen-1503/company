@@ -24,29 +24,20 @@ class ProductComment
 
     public function create($user_id)
     {
-        $query = "INSERT INTO product_comment (`product_id`, `user_id`, `comment`)
-            VALUES ('$this->product_id', '$user_id', '$this->comment')";
-        runQuery($query);
-    }
-
-    public static function getByProductId($id)
-    {
-        $query = "SELECT p.*, u.name FROM product_comment p LEFT JOIN user u on u.id = p.user_id WHERE p.id = $id";
-        $result = runQuery($query);
-        if (mysqli_num_rows($result) == 0) {
-            http_response_code(404);
-            die();
+        $query = "INSERT INTO product_comment (`product_id`, `user_id`, `comment`) VALUES (?, ?, ?)";
+        $param = ["iis", &$this->product_id, &$user_id, &$this->comment];
+        if (!runQuery($query, $param, false)){
+            badRequestResponse("Fail to post comment");
         }
-        return new PostComment($result->fetch_object());
     }
 
     public static function getAll()
     {
-        $query = "SELECT * FROM user";
+        $query = "SELECT * FROM product_comment";
         $result = runQuery($query);
         $response = [];
         while ($row = $result->fetch_object()) {
-            array_push($response, new PostComment($row));
+            array_push($response, new ProductComment($row));
         }
         return $response;
     }
@@ -54,19 +45,20 @@ class ProductComment
     public static function getByProductByPage($productId,$pageNum, $pageSize){
         $offset = $pageNum * $pageSize;
         $query = "SELECT p.*, u.name FROM product_comment p LEFT JOIN user u on u.id = p.user_id 
-                    WHERE product_id = $productId
-                    ORDER BY comment_time DESC LIMIT $pageSize OFFSET $offset";
-        $result = runQuery($query);
+                    WHERE product_id = ?
+                    ORDER BY comment_time DESC LIMIT ? OFFSET ?";
+        $param = ["iii", &$productId, &$pageSize, &$offset];
+        $result = runQuery($query, $param);
         $response = [];
         while ($row = $result->fetch_object()) {
-            array_push($response, new PostComment($row));
+            array_push($response, new ProductComment($row));
         }
         return $response;
     }
 
     public static function countAllByProduct($productId){
-        $query = "SELECT COUNT(*) AS total FROM product_comment WHERE product_id = $productId";
-        $result = runQuery($query);
+        $query = "SELECT COUNT(*) AS total FROM product_comment WHERE product_id = ?";
+        $result = runQuery($query, ["i", &$productId]);
         return $result->fetch_object()->total;
     }
 }

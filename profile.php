@@ -3,7 +3,7 @@ require 'util.php';
 $userId = $_SESSION['userId'];
 if (!isset($userId)){
     http_response_code(401);
-    header("Location: index.php");
+    header("Location: login.php");
 }
 else{
     switch ($_SERVER['REQUEST_METHOD']){
@@ -23,7 +23,6 @@ else{
             $data = json_decode(file_get_contents("php://input", "r"));
             $user = User::getById($userId);
             if ($user->checkOldPassword($data->oldPassword)){
-                $user->checkOldPassword($data->password);
                 $user->validatePassword($data->password, $data->confirmPassword);
                 setSuccessResponse("Changed password successfully");
             } else {

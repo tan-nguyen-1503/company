@@ -2,6 +2,7 @@
 require 'util.php';
 if (isset($_SESSION['userId'])){
     http_response_code(302);
+    header("Location: index.php");
 }
 elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
     include './model/User.php';
@@ -9,7 +10,7 @@ elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $user = User::login($data->email, $data->password);
     $_SESSION['userId'] = $user->id;
     $_SESSION['isAdmin'] = $user->is_admin;
-    setSuccessResponse($user);
+//    setSuccessResponse($user);
 }else {
     include "./view/login_view.php";
 }

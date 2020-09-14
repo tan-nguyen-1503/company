@@ -34,32 +34,33 @@ class Branch
             $this->phone1 = $object->phone2;
         if (isset($object->phone3))
             $this->phone1 = $object->phone3;
-        $this->is_active = $object->is_active;
+        if (isset($object->is_active))
+            $this->is_active = $object->is_active;
     }
 
     public function create()
     {
-        $query = "INSERT INTO branch (`branch_name`, `address`, `email1`, `email2`, `email3`, `phone1`, `phone2`, `phone3`) 
-                VALUES ('$this->branch_name', '$this->address', '$this->email1', '$this->email2', '$this->email3', '$this->phone1', '$this->phone2', '$this->phone3')";
-        runQuery($query);
+        $query = "INSERT INTO branch (`branch_name`, `address`, `email1`, `email2`, `email3`, `phone1`, `phone2`, `phone3`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $param = ["ssssssss", &$this->branch_name, &$this->address, &$this->email1, &$this->email2, &$this->email3, &$this->phone1, &$this->phone2, &$this->phone3];
+        if (runQuery($query, $param, false) == 0){
+            badRequestResponse("Fail to create a branch");
+        };
     }
 
     public function update()
     {
-        $query = "UPDATE branch SET branch_name = $this->branch_name, address = $this->address, 
-                  email1 = $this->email1, email2 = $this->email2, email3 = $this->email3,
-                  phone1 = $this->phone1, phone2 = $this->phone2, phone3 = $this->phone3                  
-                  WHERE id = $this->id";
-        runQuery($query);
+        $query = "UPDATE branch SET branch_name = ?, address = ?, email1 = ?, email2 = ?, email3 = ?, phone1 = ?, phone2 = ?, phone3 = ? WHERE id = ?";
+        $param = ["ssssssssi", &$this->branch_name, &$this->address, &$this->email1, &$this->email2, &$this->email3, &$this->phone1, &$this->phone2, &$this->phone3, &$this->id];
+        if (runQuery($query, $param, false) == 0)
+            badRequestResponse("Fail to update branch");
     }
 
     public static function getById($id)
     {
         $query = "SELECT * FROM branch WHERE id = $id";
-        $result = runQuery($query);
+        $result = runQuery($query, ["i", &$id]);
         if (mysqli_num_rows($result) == 0) {
-            http_response_code(404);
-            die();
+            badRequestResponse("Not found branch");
         }
         return new Branch($result->fetch_object());
     }
@@ -77,8 +78,8 @@ class Branch
 
     public static function getAllByPage($pageNum, $pageSize){
         $offset = $pageNum * $pageSize;
-        $query = "SELECT * FROM branch LIMIT $pageSize OFFSET $offset";
-        $result = runQuery($query);
+        $query = "SELECT * FROM branch LIMIT ? OFFSET ?";
+        $result = runQuery($query, ["ii", &$pageSize, &$offset]);
         $response = [];
         while ($row = $result->fetch_object()) {
             array_push($response, new Branch($row));
@@ -88,8 +89,8 @@ class Branch
 
     public static function getActiveByPage($pageNum, $pageSize){
         $offset = $pageNum * $pageSize;
-        $query = "SELECT * FROM branch WHERE is_active = true LIMIT $pageSize OFFSET $offset";
-        $result = runQuery($query);
+        $query = "SELECT * FROM branch WHERE is_active = true LIMIT ? OFFSET ?";
+        $result = runQuery($query, ["ii", &$pageSize, &$offset]);
         $response = [];
         while ($row = $result->fetch_object()) {
             array_push($response, new Branch($row));
@@ -111,7 +112,8 @@ class Branch
 
     public static function delete($id)
     {
-        $query = "UPDATE branch SET is_active = false WHERE id = $id";
-        runQuery($query);
+        $query = "UPDATE branch SET is_active = false WHERE id = ?";
+        if (runQuery($query, ["i", &$id], false) == 0)
+            badRequestResponse("Invalid branch");
     }
 }

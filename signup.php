@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $user->validatePassword($data->password, $data->confirmPassword);
     $user->create();
     $_SESSION['userId'] = $conn->insert_id;
+    $_SESSION['isAdmin'] = false;
     setSuccessResponse("Created user successfully");
 } else {
     require './LayOut/header.php';

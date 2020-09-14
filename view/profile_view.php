@@ -1,10 +1,11 @@
 <?php
 include 'LayOut/header.php';
 
-include 'model/Post.php';
-$page = isset($_GET['page']) ? $_GET['page'] : 0;
-$post_list = Post::getActiveByPage($page, 10);
+include 'model/User.php';
+$user = User::getById($_SESSION['userId']);
 ?>
+
+<!--2 form, 1 form to update information, 1 form to change password-->
 
 <?php
 include 'LayOut/footer.php';

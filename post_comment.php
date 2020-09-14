@@ -4,10 +4,15 @@ include 'model/PostComment.php';
 
 switch ($_SERVER['REQUEST_METHOD']){
     case 'GET':{
-        $postId = $_GET['postId'];
-        $page = isset($_GET['page']) ? $_GET['page'] : 0;
-        $comment_list = PostComment::getByPostByPage($postId, $page, 10);
-        setSuccessResponse($comment_list);
+        if (!isset($_GET['postId'])){
+            http_response_code(400);
+        } else {
+            $postId = $_GET['postId'];
+            $page = isset($_GET['page']) ? $_GET['page'] : 0;
+            $comment_list = PostComment::getByPostByPage($postId, $page, 10);
+            setSuccessResponse($comment_list);
+        }
+        break;
     }
     case 'POST':{
         $userId = $_SESSION['userId'];
@@ -19,8 +24,10 @@ switch ($_SERVER['REQUEST_METHOD']){
         } else{
             http_response_code(401);
         }
+        break;
     }
     default:
         http_response_code(405);
+        break;
 }
 ?>

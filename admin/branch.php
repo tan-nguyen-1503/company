@@ -5,7 +5,7 @@ if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']){
 } else {
     switch ($_SERVER['REQUEST_METHOD']){
         case 'POST':{
-            include '../model/Post.php';
+            include '../model/Branch.php';
             $data = json_decode(file_get_contents("php://input", "r"));
             $branch = new Branch($data);
             $branch->create();
@@ -13,7 +13,7 @@ if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']){
             break;
         }
         case 'PUT': {
-            include '../model/Post.php';
+            include '../model/Branch.php';
             $data = json_decode(file_get_contents("php://input", "r"));
             $branch = new Branch($data);
             $branch->update();
@@ -21,10 +21,10 @@ if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']){
             break;
         }
         case 'DELETE':{
-            include '../model/Post.php';
+            include '../model/Branch.php';
             $data = json_decode(file_get_contents("php://input", "r"));
             Branch::delete($data->id);
-            setSuccessResponse("Updated branch successfully");
+            setSuccessResponse("Deleted branch successfully");
             break;
         }
         case 'GET':{

@@ -24,7 +24,7 @@ if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']){
             include '../model/Post.php';
             $data = json_decode(file_get_contents("php://input", "r"));
             Post::delete($data->id);
-            setSuccessResponse("Deleted product successfully");
+            setSuccessResponse("Deleted post successfully");
             break;
         }
         case 'GET':{

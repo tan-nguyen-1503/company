@@ -18,13 +18,17 @@ class ProductRating
 
     public function create($userId)
     {
-        $query = "INSERT INTO product_rating (`user_id`, `product_id`, `rating`) VALUES ('$userId', '$this->product_id', '$this->rating')";
-        runQuery($query);
+        $query = "INSERT INTO product_rating (`user_id`, `product_id`, `rating`) VALUES (?, ?, ?)";
+        $param = ['iii', &$userId, &$this->product_id, &$this->rating];
+        if (!runQuery($query, $param, false)){
+            badRequestResponse("Fail to rate product");
+        };
     }
 
     public function update()
     {
         $query = "UPDATE product_rating SET rating = $this->rating WHERE id = $this->id";
-        runQuery($query);
+        if (!runQuery($query, ['i', &$this->id], false))
+            badRequestResponse("Fail to update product rating");
     }
 }

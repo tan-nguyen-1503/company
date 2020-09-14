@@ -17,7 +17,8 @@ class About
     }
 
     public function update(){
-        $query = "UPDATE about SET about = '$this->about' WHERE id = 1";
-        runQuery($query);
+        $query = "UPDATE about SET about = ? WHERE id = 1";
+        if (runQuery($query, ['s', &$this->about], false) == 0)
+            badRequestResponse("Fail to update about page");
     }
 }

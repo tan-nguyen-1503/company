@@ -19,7 +19,7 @@
                 </div>
                 <div class="form-group formElement">
                     <label for="re_pass"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;&nbsp;</label>
-                    <input type="password" name="re_password" id="re_pass" placeholder="Repeat your password" size="37"/>
+                    <input type="password" name="confirmPassword" id="re_pass" placeholder="Repeat your password" size="37"/>
                 </div>
                 <div class="form-group mt-3 d-flex justify-content-left">
                     <button class="btn btn-primary btn-account" name="btn_register">Register</button>
@@ -51,7 +51,7 @@
 
             complete: function (xhr, status){
                 if (status !== 'error'){
-                    location.href = "index.php";
+                    // location.href = "index.php";
                 } else {
                     $("#error").html(xhr.responseText);
                 }

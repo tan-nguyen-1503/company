@@ -16,8 +16,10 @@ class Post
     {
         if (isset($object->id)) //create -> no id
             $this->id = $object->id;
-        $this->title = $object->title;
-        $this->content = $object->content;
+        if (isset($object->title))
+            $this->title = $object->title;
+        if (isset($object->content))
+            $this->content = $object->content;
         if (isset($object->name))
             $this->author = $object->name; //name of the user table
         if (isset($object->date)) //auto create date
@@ -30,24 +32,27 @@ class Post
 
     public function create($author_id)
     {
-        $query = "INSERT INTO post (`title`, `content`, author_id, `image`)
-            VALUES ('$this->title', '$this->content', '$author_id', '$this->image')";
-        runQuery($query);
+        $query = "INSERT INTO post (`title`, `content`, author_id, `image`) VALUES (?, ?, ?, ?)";
+        $param = ["ssis", &$this->title, &$this->content, &$author_id, &$this->image];
+        if (!runQuery($query, $param, false)){
+            badRequestResponse("Fail to create post");
+        }
     }
 
     public function update()
     {
-        $query = "UPDATE post SET title = $this->title, content = $this->content, image = $this->image WHERE id = $this->id";
-        runQuery($query);
+        $query = "UPDATE post SET title = ?, content = ?, image = ? WHERE id = ?";
+        $param = ["sssi", &$this->title, &$this->content, &$this->image, &$this->id];
+        if (!runQuery($query, $param, false))
+            badRequestResponse("Fail to update post");
     }
 
     public static function getById($id)
     {
-        $query = "SELECT p.*, u.name FROM post p LEFT JOIN user u ON p.author_id = u.id WHERE p.id = $id";
-        $result = runQuery($query);
+        $query = "SELECT p.*, u.name FROM post p LEFT JOIN user u ON p.author_id = u.id WHERE p.id = ?";
+        $result = runQuery($query, ["i", &$id]);
         if (mysqli_num_rows($result) == 0) {
-            http_response_code(404);
-            die();
+            badRequestResponse("Invalid post");
         }
         return new Post($result->fetch_object());
     }
@@ -65,8 +70,9 @@ class Post
 
     public static function getAllByPage($pageNum, $pageSize){
         $offset = $pageNum * $pageSize;
-        $query = "SELECT * FROM post ORDER BY date DESC LIMIT $pageSize OFFSET $offset";
-        $result = runQuery($query);
+        $query = "SELECT * FROM post ORDER BY date DESC LIMIT ? OFFSET ?";
+        $param = ["ii", $pageSize, $offset];
+        $result = runQuery($query, $param);
         $response = [];
         while ($row = $result->fetch_object()) {
             array_push($response, new Post($row));
@@ -76,8 +82,9 @@ class Post
 
     public static function getActiveByPage($pageNum, $pageSize){
         $offset = $pageNum * $pageSize;
-        $query = "SELECT * FROM post WHERE is_active = true ORDER BY date DESC LIMIT $pageSize OFFSET $offset";
-        $result = runQuery($query);
+        $query = "SELECT * FROM post WHERE is_active = true ORDER BY date DESC LIMIT ? OFFSET ?";
+        $param = ["ii", $pageSize, $offset];
+        $result = runQuery($query, $param);
         $response = [];
         while ($row = $result->fetch_object()) {
             array_push($response, new Post($row));
@@ -100,7 +107,9 @@ class Post
 
     public static function delete($id)
     {
-        $query = "UPDATE user SET is_active = false WHERE id = $id";
-        runQuery($query);
+        $query = "UPDATE post SET is_active = false WHERE id = ?";
+        if (!runQuery($query, ["i", $id], false)) {
+            badRequestResponse("Invalid post");
+        }
     }
 }
