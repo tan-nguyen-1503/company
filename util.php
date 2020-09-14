@@ -8,7 +8,7 @@ $dBName = "company";
 
 $conn = mysqli_connect($servername, $dBUsername, $dBPassword, $dBName);
 if (!$conn)
-    die(json_encode("Connection Failed: " . mysqli_connect_error()));
+    serverErrorResponse("Connection Failed: " . mysqli_connect_error());
 
 function runQuery($query, $param = null, $isSelect = true)
 {
@@ -19,8 +19,7 @@ function runQuery($query, $param = null, $isSelect = true)
     }
 
     if (!$stmt->execute()) {
-        http_response_code(500);
-        die(json_encode($conn->error));
+        serverErrorResponse($conn->error);
     }
     if ($isSelect)
         return $stmt->get_result();
@@ -38,6 +37,12 @@ function setSuccessResponse($response = "")
 function badRequestResponse($error = "")
 {
     http_response_code(400);
+    header("Content-Type: application/json");
+    die(json_encode($error));
+}
+
+function serverErrorResponse($error = ""){
+    http_response_code(500);
     header("Content-Type: application/json");
     die(json_encode($error));
 }

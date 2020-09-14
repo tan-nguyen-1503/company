@@ -1,5 +1,4 @@
 <?php
-include 'model/Product.php';
 $product = Product::getById($_GET['id']);
 if ($product->is_active){
 

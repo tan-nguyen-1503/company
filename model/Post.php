@@ -71,7 +71,7 @@ class Post
     public static function getAllByPage($pageNum, $pageSize){
         $offset = $pageNum * $pageSize;
         $query = "SELECT * FROM post ORDER BY date DESC LIMIT ? OFFSET ?";
-        $param = ["ii", $pageSize, $offset];
+        $param = ["ii", &$pageSize, &$offset];
         $result = runQuery($query, $param);
         $response = [];
         while ($row = $result->fetch_object()) {
@@ -83,7 +83,7 @@ class Post
     public static function getActiveByPage($pageNum, $pageSize){
         $offset = $pageNum * $pageSize;
         $query = "SELECT * FROM post WHERE is_active = true ORDER BY date DESC LIMIT ? OFFSET ?";
-        $param = ["ii", $pageSize, $offset];
+        $param = ["ii", &$pageSize, &$offset];
         $result = runQuery($query, $param);
         $response = [];
         while ($row = $result->fetch_object()) {
@@ -99,7 +99,7 @@ class Post
     }
 
     public static function countAllActive(){
-        $query = "SELECT COUNT(*) AS total FROM post WHERE  is_active=true";
+        $query = "SELECT COUNT(*) AS total FROM post WHERE is_active=true";
         $result = runQuery($query);
         return $result->fetch_object()->total;
     }
@@ -108,7 +108,7 @@ class Post
     public static function delete($id)
     {
         $query = "UPDATE post SET is_active = false WHERE id = ?";
-        if (!runQuery($query, ["i", $id], false)) {
+        if (!runQuery($query, ["i", &$id], false)) {
             badRequestResponse("Invalid post");
         }
     }

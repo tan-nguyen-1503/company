@@ -7,8 +7,6 @@ $about = About::getAbout();
 include '../LayOut/header.php';
 ?>
 
-
-
 <style type="text/css"> @import url("../Public/summernote-0.8.18-dist/summernote-bs4.min.css"); </style>
 <script src="../Public/summernote-0.8.18-dist/summernote-bs4.min.js"></script>
 

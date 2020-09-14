@@ -6,6 +6,7 @@ if (!isset($userId)){
     header("Location: login.php");
 }
 else{
+    require 'model/User.php';
     switch ($_SERVER['REQUEST_METHOD']){
         case 'GET':
             include 'view/profile_view.php';
@@ -17,6 +18,7 @@ else{
             $user->id = $userId;
             $user->update();
             setSuccessResponse("Update profile successfully");
+            break;
         }
         case 'PUT':{
             //change password
@@ -24,11 +26,12 @@ else{
             $user = User::getById($userId);
             if ($user->checkOldPassword($data->oldPassword)){
                 $user->validatePassword($data->password, $data->confirmPassword);
+                $user->changePassword($data->password);
                 setSuccessResponse("Changed password successfully");
             } else {
-                http_response_code(401);
-                echo json_decode("Invalid old password");
+                badRequestResponse("Wrong old password");
             }
+            break;
         }
         default:
             http_response_code(405);

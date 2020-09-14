@@ -24,11 +24,7 @@
 
   <body data-spy ="scroll" data-target="#navbarResponsive">
     <!--NavBar-->
-    <nav style="height:90px" class="navbar navbar-expand-md navbar-dark <?php 
-      if($_SERVER['REQUEST_URI'] == "/Ass/index.php"||$_SERVER['REQUEST_URI'] == "/Ass/"){
-        echo "fixed-top";
-      }
-    ?>">
+    <nav style="height:90px" class="navbar navbar-expand-md navbar-dark">
       <a class="navbar-brand" href="index.php"><img src="./Public/images/Homepage/logoBK.png" alt="logo" style="width: 50px;"/></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"  aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -42,18 +38,44 @@
             <a class="nav-link" href="about.php">About Us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="news.php">News</a>
+            <a class="nav-link" href="post.php">News</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Let's Shopping</a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Our product</a>
             <div class="dropdown-menu account" aria-labelledby="navbarDropdown" >
-              <a class="dropdown-item" href="laptop.php"><img class="ml-1"src="https://img.icons8.com/nolan/32/000000/computer.png"> LAPTOP</a>
-              <a class="dropdown-item" href="accessories.php"><img class="ml-1" src="https://img.icons8.com/dusk/32/000000/headphones.png"> ACCESSORI</a>
+                <?php
+                    require 'model/Category.php';
+                    $category_list = Category::getAll();
+                    foreach ($category_list as $category){
+                        echo "<a class='dropdown-item' href='product.php?categoryId=$category->id'>$category->category</a>";
+                    }
+                ?>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#contact" >Contact</a>
+            <a class="nav-link" href="contact.php" >Contact</a>
           </li>
+        <?php
+            if (isset($_SESSION['userId'])){
+        ?>
+        <li class="nav-item">
+        <a class="nav-link" href="profile.php">Profile</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="logout.php" >Logout</a>
+        </li>
+        <?php
+            } else {
+        ?>
+        <li class="nav-item">
+        <a class="nav-link" href="login.php">Login</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="signup.php" >Sign up</a>
+        </li>
+        <?php
+            }
+        ?>
         </ul>
       </div>
     </nav>

@@ -32,7 +32,7 @@ class Product
 
     private function setRating(){
         $query = "SELECT AVG(rating) as avg_rating, COUNT(*) as total FROM product_rating WHERE product_id = ?";
-        $result = runQuery($query, [i, &$this->id])->fetch_object();
+        $result = runQuery($query, ["i", &$this->id])->fetch_object();
         if ($result != null){
             $this->rating = $result->avg_rating;
             $this->count_rating = $result->total;
@@ -124,10 +124,31 @@ class Product
         return $result->fetch_object()->total;
     }
 
+    public static function getByCategoryByPage($categoryId, $pageNum, $pageSize){
+        $offset = $pageNum * $pageSize;
+        $query = "SELECT * FROM product WHERE category_id = ? AND is_active = true LIMIT ? OFFSET ?";
+        $param = ["iii", &$categoryId, &$pageSize, &$offset];
+        $result = runQuery($query, $param);
+
+        $response = [];
+        while ($row = $result->fetch_object()) {
+            $product = new Product($row);
+            $product->setRating();
+            array_push($response, $product);
+        }
+        return $response;
+    }
+
+    public static function countByCategory($categoryId){
+        $query = "SELECT COUNT(*) AS total FROM product WHERE category_id = ? AND is_active=true";
+        $result = runQuery($query, ['i', &$categoryId]);
+        return $result->fetch_object()->total;
+    }
+
     public static function delete($id)
     {
         $query = "UPDATE product SET is_active = false WHERE id = ?";
-        if (!runQuery($query, ["i", $id], false)) {
+        if (!runQuery($query, ["i", &$id], false)) {
             badRequestResponse("Invalid product");
         }
     }

@@ -4,7 +4,7 @@
             <div></div>
             <form method="POST" class="register-form" id="register-form">
                 <h2 class="form-title mb-3">Sign up</h2>
-                <p style="color:red;font-weight:700" id="Error"></p>
+                <p style="color:red;font-weight:700" id="error"></p>
                 <div class="form-group formElement">
                     <label for="name"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;</label>
                     <input type="text" name="name" id="name" placeholder="Your Name" size="37"/>
@@ -51,7 +51,7 @@
 
             complete: function (xhr, status){
                 if (status !== 'error'){
-                    // location.href = "index.php";
+                    location.href = "profile.php";
                 } else {
                     $("#error").html(xhr.responseText);
                 }

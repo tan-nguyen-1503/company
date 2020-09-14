@@ -51,7 +51,7 @@ class User
             $param = ["sssi", &$this->name, &$this->date_of_birth, &$this->avatar, &$this->id];
         }
         if (!runQuery($query, $param, false)) {
-           badRequestResponse("Unexisting user");
+           badRequestResponse("Fail to update user");
         }
     }
 

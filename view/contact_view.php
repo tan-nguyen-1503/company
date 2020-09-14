@@ -1,15 +1,12 @@
 <?php
-include '../model/Branch.php';
-$page = $_GET['page'];
-if (!isset($page))
-    $page = 0;
-$_branch_list = Branch::getActiveByPage($page, 10);
+include 'LayOut/header.php';
 
-include '../LayOut/header.php';
+$page = isset($page) ? $page = $_GET['page'] : 0;
+$_branch_list = Branch::getActiveByPage($page, 10);
 ?>
 
 <!--list all branches in contact page;-->
 
 <?php
-include '../LayOut/footer.php';
+include 'LayOut/footer.php';
 ?>

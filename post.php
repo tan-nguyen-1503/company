@@ -1,6 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'GET'){
     require 'util.php';
+    include 'model/Post.php';
     if (isset($_GET['id']))
         include 'view/post_detail_view.php';
     else

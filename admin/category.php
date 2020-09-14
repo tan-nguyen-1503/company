@@ -20,7 +20,7 @@ if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']){
             setSuccessResponse("Updated category successfully");
             break;
         }
-        case 'GET':{
+        case 'GET': {
             include '../view/admin_category_view.php';
             break;
         }

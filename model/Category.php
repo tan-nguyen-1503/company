@@ -38,7 +38,7 @@ class Category
         if (mysqli_num_rows($result) == 0) {
             badRequestResponse("Invalid category");
         }
-        return new User($result->fetch_object());
+        return new Category($result->fetch_object());
     }
 
     public static function getAll()
@@ -47,7 +47,7 @@ class Category
         $result = runQuery($query);
         $response = [];
         while ($row = $result->fetch_object()) {
-            array_push($response, new User($row));
+            array_push($response, new Category($row));
         }
         return $response;
     }
@@ -55,7 +55,7 @@ class Category
     public static function getByPage($pageNum, $pageSize){
         $offset = $pageNum * $pageSize;
         $query = "SELECT * FROM category LIMIT ? OFFSET ?";
-        $param = ["ii", $pageSize, $offset];
+        $param = ["ii", &$pageSize, &$offset];
         $result = runQuery($query, $param);
         $response = [];
         while ($row = $result->fetch_object()) {
