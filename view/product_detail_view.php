@@ -1,9 +1,13 @@
 <?php
 $product = Product::getById($_GET['id']);
 if ($product->is_active){
-
     include 'LayOut/header.php';
-    ?>
+?>
+
+
+
+
+
 
 
     <?php

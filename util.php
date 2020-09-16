@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$documentRoot = $_SERVER['DOCUMENT_ROOT'];
+
 $servername = "localhost";
 $dBUsername = "root";
 $dBPassword = "";

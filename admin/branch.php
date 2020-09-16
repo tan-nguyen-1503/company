@@ -3,9 +3,9 @@ require '../util.php';
 if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']){
     http_response_code(403);
 } else {
+    include $_SERVER['DOCUMENT_ROOT'] . '/model/Branch.php';
     switch ($_SERVER['REQUEST_METHOD']){
         case 'POST':{
-            include '../model/Branch.php';
             $data = json_decode(file_get_contents("php://input", "r"));
             $branch = new Branch($data);
             $branch->create();
@@ -13,7 +13,6 @@ if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']){
             break;
         }
         case 'PUT': {
-            include '../model/Branch.php';
             $data = json_decode(file_get_contents("php://input", "r"));
             $branch = new Branch($data);
             $branch->update();
@@ -21,7 +20,6 @@ if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']){
             break;
         }
         case 'DELETE':{
-            include '../model/Branch.php';
             $data = json_decode(file_get_contents("php://input", "r"));
             Branch::delete($data->id);
             setSuccessResponse("Deleted branch successfully");

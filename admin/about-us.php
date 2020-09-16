@@ -4,9 +4,9 @@ require '../util.php';
 if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']){
     http_response_code(403);
 } else {
+    include $_SERVER['DOCUMENT_ROOT'] . '/model/About.php';
     switch ($_SERVER['REQUEST_METHOD']){
         case 'PUT': {
-            include '../model/About.php';
             $data = json_decode(file_get_contents("php://input", "r"));
             $about = new About($data);
             $about->update();

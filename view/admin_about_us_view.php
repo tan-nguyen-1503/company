@@ -1,10 +1,7 @@
 <?php
-include '../model/About.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/LayOut/header.php';
 $data = json_decode(file_get_contents("php://input", "r"));
 $about = About::getAbout();
-
-//<!--TODO: edit view-->, do new header/footer for admin page
-include '../LayOut/header.php';
 ?>
 
 <style type="text/css"> @import url("../Public/summernote-0.8.18-dist/summernote-bs4.min.css"); </style>
@@ -14,7 +11,7 @@ include '../LayOut/header.php';
     <div class="row">
         <div class="col-sm-12">
             <div class="card-box">
-                <h4 class="m-b-30 m-t-0 header-title"><b>About</b></h4>
+                <h4 class="m-b-30 m-t-0 m-b-5 header-title"><b>About</b></h4>
                 <textarea id="summernote" name="about" required><?php echo htmlentities($about->about)?></textarea>
             </div>
         </div>
@@ -44,8 +41,12 @@ include '../LayOut/header.php';
 <!--<div id="summernote"></div>-->
 <script>
     $('#summernote').summernote({
-        tabsize: 2,
-        height: 300,
+        width: 800,
+        height: 500,
+        focus: false
     });
 </script>
-</body>
+
+<?php
+include $_SERVER['DOCUMENT_ROOT'] . '/LayOut/footer.php';
+?>

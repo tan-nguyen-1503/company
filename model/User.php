@@ -47,8 +47,8 @@ class User
             $query = "UPDATE user SET password = ?, is_active = ? WHERE id = ?";
             $param = ["sii", &$this->password, &$this->is_active, &$this->id];
         }else{
-            $query = "UPDATE user SET name = ?, date_of_birth = ?, avatar = ? WHERE id = ?";
-            $param = ["sssi", &$this->name, &$this->date_of_birth, &$this->avatar, &$this->id];
+            $query = "UPDATE user SET name = ?, date_of_birth = ? WHERE id = ?";
+            $param = ["ssi", &$this->name, &$this->date_of_birth, &$this->id];
         }
         if (!runQuery($query, $param, false)) {
            badRequestResponse("Fail to update user");
@@ -122,6 +122,14 @@ class User
         if (strlen($password) < 8){
             http_response_code(400);
             die(json_encode("Password length must be larger than 8"));
+        }
+    }
+
+    public static function updateAvatar($avatar, $userId){
+        $query = "UPDATE user SET `avatar` = ? WHERE id = ?";
+        $param = ["si", &$avatar, &$userId];
+        if (runQuery($query, $param, false) == 0) {
+            badRequestResponse("Unexisting user");
         }
     }
 }

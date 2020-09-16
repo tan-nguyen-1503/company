@@ -5,7 +5,7 @@ class Post
 {
     public $id;
     public $title;
-    private $content;
+    public $content;
     public $author; //name of author
     public $date;
     public $image;

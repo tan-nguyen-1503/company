@@ -3,9 +3,9 @@ require '../util.php';
 if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']){
     http_response_code(403);
 } else {
+    include '../model/Post.php';
     switch ($_SERVER['REQUEST_METHOD']){
         case 'POST':{
-            include '../model/Post.php';
             $data = json_decode(file_get_contents("php://input", "r"));
             $post = new Post($data);
             $post->create($_SESSION['userId']);
@@ -13,7 +13,6 @@ if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']){
             break;
         }
         case 'PUT': {
-            include '../model/Post.php';
             $data = json_decode(file_get_contents("php://input", "r"));
             $post = new Post($data);
             $post->update();
@@ -21,7 +20,6 @@ if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']){
             break;
         }
         case 'DELETE':{
-            include '../model/Post.php';
             $data = json_decode(file_get_contents("php://input", "r"));
             Post::delete($data->id);
             setSuccessResponse("Deleted post successfully");

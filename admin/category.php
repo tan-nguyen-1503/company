@@ -5,7 +5,7 @@ if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']){
 } else {
     switch ($_SERVER['REQUEST_METHOD']){
         case 'POST':{
-            include '../model/Post.php';
+            include '../model/Category.php';
             $data = json_decode(file_get_contents("php://input", "r"));
             $category = new Category($data);
             $category->create();
@@ -13,7 +13,7 @@ if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']){
             break;
         }
         case 'PUT': {
-            include '../model/Post.php';
+            include '../model/Category.php';
             $data = json_decode(file_get_contents("php://input", "r"));
             $category = new Category($data);
             $category->update();
@@ -21,7 +21,10 @@ if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']){
             break;
         }
         case 'GET': {
-            include '../view/admin_category_view.php';
+            if (isset($_GET['id']) || isset($_GET['create']))
+                include '../view/admin_category_detail_view.php';
+            else
+                include '../view/admin_category_list_view.php';
             break;
         }
         default:
