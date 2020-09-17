@@ -21,8 +21,10 @@ if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']){
             break;
         }
         case 'GET': {
-            if (isset($_GET['id']) || isset($_GET['create']))
+            if (isset($_GET['id']))
                 include '../view/admin_category_detail_view.php';
+            elseif (isset($_GET['create']))
+                include '../view/admin_category_create_view.php';
             else
                 include '../view/admin_category_list_view.php';
             break;

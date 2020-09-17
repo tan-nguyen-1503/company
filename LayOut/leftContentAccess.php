@@ -1,91 +1,71 @@
-<div class="mt-5 col-lg-3 d-none d-lg-block" id="leftcontent" style="padding-left:0px; padding-right:0px;">  
+<div class="container ">
+    <div class="row mt-2">
+        <div class="col-12 col-md-4 col-lg-3" style="background-color: #F4F4F3;">
+            <div class="shop_sidebar_area">
+                <div class="catagory mt-2">
+                    <!-- Title -->
+                    <!-- <h5 class="title">DANH MỤC SẢN PHẨM</h5> -->
+                    <!--  Catagories  -->
+                    <div class="catagories-menu">
+                        <ul id="menu-content2" class="menu-content collapse show">
+                            <!-- Single Item -->
+                            <li data-toggle="collapse" data-target="#users">
+                                <a href="user.php" id="user-icon"><b style="margin-left: 10px;">User</b></a>
+                                <ul class="sub-menu collapse show" id="users">
+                                    <li><a href="user.php">Edit user</a></li>
+                                </ul>
+                            </li>
 
-    <!--Chech Box-->
-    <div class="mt-3">
-        <b>BRANCH</b>
-        <div class="input-group mt-2 mb-2">
-        <div class="form-inline">
-            <input type="checkbox" class="mr-3">
-            <a href="#">IMAC</a>
-        </div>
-        </div>
-        <div class="input-group mb-2 mt-2">
-        <div class="form-inline">
-            <input type="checkbox" class="mr-3">
-            <a href="#">ASUS</a>
-        </div>
-        </div>
-        <div class="input-group mb-2 mt-2">
-        <div class="form-inline">
-            <input type="checkbox" class="mr-3">
-            <a href="#">ACER</a>
-        </div>
-        </div>
-        <div class="input-group mb-2 mt-2">
-        <div class="form-inline">
-            <input type="checkbox" class="mr-3">
-            <a href="#">DELL</a>
-        </div>
-        </div>
-        <div class="input-group mb-2 mt-2">
-        <div class="form-inline">
-            <input type="checkbox" class="mr-3">
-            <a href="#">HP</a>
-        </div>
-        </div>
-        <div class="input-group mb-2 mt-2">
-        <div class="form-inline">
-            <input type="checkbox" class="mr-3">
-            <a href="#">LENOVO</a>
-        </div>
-        </div>
-    </div>  
-    <!--End of Check Box-->
+                            <!-- Single Item -->
+                            <li data-toggle="collapse" data-target="#product">
+                                <a href="product.php" id="product-icon"><b style="margin-left: 10px;">Product</b></a>
+                                <ul class="sub-menu collapse show" id="product">
+                                    <li><a href="product.php?create">Add new product</a></li>
+                                    <li><a href="product.php">Edit product</a></li>
+                                </ul>
+                            </li>
 
-        <!--range price-->
-        <div>
-            <form>
-            <div class="form-group mt-5">
-                <label class="mb-3" for="formControlRange" style="font-weight: bold;">PRICE</label>
-                <input type="range" class="form-control-range" id="formControlRange">
-            </div>
-            </form>
-        </div>
-        <!--End of range price-->
+                            <!-- Single Item -->
+                            <li data-toggle="collapse" data-target="#news">
+                                <a href="#" id="news-icon"><b style="margin-left: 10px;">Post</b></a>
+                                <ul class="sub-menu collapse show" id="news">
+                                    <li><a href="post.php?create">Add a post</a></li>
+                                    <li><a href=post.php#">Edit post</a></li>
+                                </ul>
+                            </li>
 
-        <!--Chuẩn USB-->
-        <div class="mt-5 mb-5"> 
-            <p style="font-weight: bold;">RAM</p>
-            <div class="input-group mt-2">
-            <div class="form-inline">
-                <input type="checkbox" class="mr-3">
-                <a href="#">16GB</a>
-            </div>
-            </div>
-            <div class="input-group mt-2">
-            <div class="form-inline">
-                <input type="checkbox" class="mr-3">
-                <a href="#">32GB</a>
-            </div>
-            </div>
-            <div class="input-group mt-2">
-            <div class="form-inline">
-                <input type="checkbox" class="mr-3">
-                <a href="#">64GB</a>
-            </div>
-            </div>
-            <div class="input-group mt-2">
-            <div class="form-inline">
-                <input type="checkbox" class="mr-3">
-                <a href="#">128GB</a>
-            </div>
-            </div>
-            <div class="input-group mt-2">
-            <div class="form-inline">
-                <input type="checkbox" class="mr-3">
-                <a href="#">256GB</a>
-            </div>
+                            <!-- Single Item -->
+                            <li data-toggle="collapse" data-target="#category">
+                                <a href="#" id="category-icon"><b style="margin-left: 10px;">Category</b></a>
+                                <ul class="sub-menu collapse show" id="category">
+                                    <li><a href="category.php?create">Add category</a></li>
+                                    <li><a href="category.php">Edit category</a></li>
+                                </ul>
+                            </li>
+
+                            <!-- Single Item -->
+                            <li data-toggle="collapse" data-target="#about">
+                                <a href="#" id="about-icon"><b style="margin-left: 10px;">About us</b></a>
+                                <ul class="sub-menu collapse show" id="about">
+                                    <li>
+                                        <a href="about-us.php">Edit</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr />
+                </div>
             </div>
         </div>
-        <!--End of Chuẩn USB-->
-    </div>
+
+        <style type="text/css"> @import url("../Public/summernote-0.8.18-dist/summernote-bs4.min.css"); </style>
+        <script src="../Public/summernote-0.8.18-dist/summernote-bs4.min.js"></script>
+
+        <div class="col-12 col-md-8 col-lg-9" style="background-color: white;">
+            <div class="shop_product_area mt-2">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="item owl-carousel owl-theme">
+                            <div class="create-product">

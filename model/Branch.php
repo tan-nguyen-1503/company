@@ -6,12 +6,8 @@ class Branch
     public $id;
     public $branch_name;
     public $address;
-    public $email1;
-    public $email2;
-    public $email3;
-    public $phone1;
-    public $phone2;
-    public $phone3;
+    public $email;
+    public $phone;
     public $is_active = true;
 
     #constructor from db response
@@ -20,28 +16,18 @@ class Branch
         if (isset($object->id)) //create -> no id
             $this->id = $object->id;
         $this->branch_name = $object->branch_name;
-        if (isset($object->email1))
-            $this->email1 = $object->email1;
-        if (isset($object->email2))
-            $this->email2 = $object->email2;
-        if (isset($object->email3))
-            $this->email3 = $object->email3;
-        if (isset($object->phone1))
-            $this->phone1 = $object->phone1;
-        if (isset($object->phone1))
-            $this->phone1 = $object->phone1;
-        if (isset($object->phone2))
-            $this->phone1 = $object->phone2;
-        if (isset($object->phone3))
-            $this->phone1 = $object->phone3;
+        if (isset($object->email))
+            $this->email = $object->email;
+        if (isset($object->phone))
+            $this->phone = $object->phone;
         if (isset($object->is_active))
             $this->is_active = $object->is_active;
     }
 
     public function create()
     {
-        $query = "INSERT INTO branch (`branch_name`, `address`, `email1`, `email2`, `email3`, `phone1`, `phone2`, `phone3`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        $param = ["ssssssss", &$this->branch_name, &$this->address, &$this->email1, &$this->email2, &$this->email3, &$this->phone1, &$this->phone2, &$this->phone3];
+        $query = "INSERT INTO branch (`branch_name`, `address`, `email`, `phone`) VALUES (?, ?, ?, ?)";
+        $param = ["ssss", &$this->branch_name, &$this->address, &$this->email, &$this->phone];
         if (runQuery($query, $param, false) == 0){
             badRequestResponse("Fail to create a branch");
         };
@@ -49,8 +35,8 @@ class Branch
 
     public function update()
     {
-        $query = "UPDATE branch SET branch_name = ?, address = ?, email1 = ?, email2 = ?, email3 = ?, phone1 = ?, phone2 = ?, phone3 = ? WHERE id = ?";
-        $param = ["ssssssssi", &$this->branch_name, &$this->address, &$this->email1, &$this->email2, &$this->email3, &$this->phone1, &$this->phone2, &$this->phone3, &$this->id];
+        $query = "UPDATE branch SET branch_name = ?, address = ?, email = ?, phone = ? WHERE id = ?";
+        $param = ["ssssi", &$this->branch_name, &$this->address, &$this->email, &$this->phone, &$this->id];
         if (runQuery($query, $param, false) == 0)
             badRequestResponse("Fail to update branch");
     }

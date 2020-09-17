@@ -17,8 +17,9 @@ class Category
 
     public function create()
     {
-        $query = "INSERT INTO category (`category`) VALUE ?";
-        if (runQuery($query, ["s", &$this->category], false) == 0) {
+        $query = "INSERT INTO category (`category`) VALUES (?)";
+        $param = ["s", &$this->category];
+        if (runQuery($query, $param,false) == 0) {
             badRequestResponse("Fail to create category");
         }
     }

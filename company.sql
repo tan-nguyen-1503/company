@@ -62,7 +62,7 @@ CREATE TABLE `branch` (
 -- Dumping data for table `branch`
 --
 
-INSERT INTO `branch` (`id`, `branch_name`, `address`, `email1`, `email2`, `email3`, `phone1`, `phone2`, `phone3`, `is_active`) VALUES
+INSERT INTO `branch` (`id`, `branch_name`, `address`, email, `email2`, `email3`, phone, `phone2`, `phone3`, `is_active`) VALUES
 (1, '21dfa', 'afdafd', NULL, 'afd', NULL, NULL, NULL, NULL, 1),
 (2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
 (3, 'New branch', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1);

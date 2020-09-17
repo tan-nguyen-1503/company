@@ -7,11 +7,13 @@ class Product
     public $product_name;
     public $description;
     private $category_id;
+    public $category;
     public $price;
     public $status;
     public $is_active;
     public $rating;
     public $count_rating;
+    public $image;
 
     #constructor from db response
     public function __construct($object)
@@ -28,6 +30,10 @@ class Product
             $this->status = $object->status;
         if (isset($object->is_active))
             $this->is_active = $object->is_active;
+        if (isset($object->image))
+            $this->image = $object->image;
+        if (isset($object->category))
+            $this->category = $object->category;
     }
 
     private function setRating(){
@@ -57,7 +63,7 @@ class Product
 
     public static function getById($id)
     {
-        $query = "SELECT * FROM product WHERE id = ?";
+        $query = "SELECT p.*, c.category FROM product p LEFT JOIN category c on p.category_id = c.id WHERE p.id = ?";
         $result = runQuery($query, ["i", &$id]);
 
         if (mysqli_num_rows($result) == 0) {
@@ -85,7 +91,7 @@ class Product
     public static function getAllByPage($pageNum, $pageSize){
         $offset = $pageNum * $pageSize;
         $query = "SELECT * FROM product LIMIT ? OFFSET ?";
-        $param = ["ii", $pageSize, $offset];
+        $param = ["ii", &$pageSize, &$offset];
         $result = runQuery($query, $param);
 
         $response = [];
@@ -100,7 +106,7 @@ class Product
     public static function getActiveByPage($pageNum, $pageSize){
         $offset = $pageNum * $pageSize;
         $query = "SELECT * FROM product WHERE is_active = true LIMIT ? OFFSET ?";
-        $param = ["ii", $pageSize, $offset];
+        $param = ["ii", &$pageSize, &$offset];
         $result = runQuery($query, $param);
 
         $response = [];
@@ -149,6 +155,14 @@ class Product
     {
         $query = "UPDATE product SET is_active = false WHERE id = ?";
         if (!runQuery($query, ["i", &$id], false)) {
+            badRequestResponse("Invalid product");
+        }
+    }
+
+    public static function uploadImage($img, $id){
+        $query = "UPDATE product SET image = ? WHERE id = ?";
+        $param = ["si", &$img, &$id];
+        if (!runQuery($query, $param, false)) {
             badRequestResponse("Invalid product");
         }
     }

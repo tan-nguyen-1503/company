@@ -32,17 +32,18 @@ class Post
 
     public function create($author_id)
     {
-        $query = "INSERT INTO post (`title`, `content`, author_id, `image`) VALUES (?, ?, ?, ?)";
-        $param = ["ssis", &$this->title, &$this->content, &$author_id, &$this->image];
+        $query = "INSERT INTO post (`title`, `content`, author_id) VALUES (?, ?, ?)";
+        $param = ["ssi", &$this->title, &$this->content, &$author_id];
         if (!runQuery($query, $param, false)){
             badRequestResponse("Fail to create post");
         }
+        return $conn->insert_id;
     }
 
     public function update()
     {
-        $query = "UPDATE post SET title = ?, content = ?, image = ? WHERE id = ?";
-        $param = ["sssi", &$this->title, &$this->content, &$this->image, &$this->id];
+        $query = "UPDATE post SET title = ?, content = ? WHERE id = ?";
+        $param = ["sssi", &$this->title, &$this->content, &$this->id];
         if (!runQuery($query, $param, false))
             badRequestResponse("Fail to update post");
     }

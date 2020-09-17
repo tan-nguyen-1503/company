@@ -6,6 +6,16 @@ if ($post->is_active){
     $comment_list = PostComment::getByPostByPage($post->id, 0, 100);
     ?>
 
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb container">
+            <li class="breadcrumb-item"><a href="index.php" style="color: black">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Post</li>
+        </ol>
+    </nav>
+
+
+
     <div class="container">
 
         <div class="row">
@@ -23,11 +33,11 @@ if ($post->is_active){
 
                 <hr>
                 <!-- Preview Image -->
-                <img class="img-fluid rounded" src="Public/images/post/<?php echo $post->image?>" alt="">
+<!--                <img class="img-fluid rounded" src="Public/images/post/--><?php //echo $post->image?><!--" alt="">-->
 
                 <!-- Post Content -->
                 <div>
-                    <?php echo htmlentities($post->content)?>
+                    <?php echo $post->content?>
                 </div>
 
                 <hr>
@@ -70,7 +80,6 @@ if ($post->is_active){
                 </div>
             </div>
         </div>
-        <!-- /.row -->
     </div>
 
     <?php if (isset($_SESSION['userId'])){

@@ -13,6 +13,7 @@
     <title></title>
     <link rel="stylesheet" href="<?php echo $rootUrl?>/Public/styles/indexCss.css">
     <script src="<?php echo $rootUrl?>/Public/script/jquery.js"></script>
+      <link rel="stylesheet" href="<?php echo $rootUrl?>/Public/styles/addProduct.css">
     <link rel="stylesheet" href="<?php echo $rootUrl?>/Public/styles/font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo $rootUrl?>/Public/styles/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

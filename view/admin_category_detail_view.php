@@ -8,6 +8,16 @@ if (isset($_GET['id'])){
 ?>
 
 
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/LayOut/footer.php';
 ?>
+

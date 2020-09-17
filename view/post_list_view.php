@@ -29,7 +29,8 @@ $total = Post::countAllActive();
 
                 <div class="card-body">
                     <img class="card-img-top img-responsive" src="<?php echo "Public/images/post/" . $post->image . "\" alt=\"" . $post->title ?>">
-                    <p class="card mb-2"><?php echo substr($post->content, 0, 150)?></p>
+<!--                    <p class="card mb-2">--><?php //echo substr($post->content, 0, 150)?><!--</p>-->
+                    <p class="card mb-2"><?php echo "By $post->author at $post->date"?></p>
                     <a  href="post.php?id=<?php echo $post->id; ?>" class="btn btn-primary">Read More &rarr;</a>
                 </div>
             </div>

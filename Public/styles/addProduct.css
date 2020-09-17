@@ -1,0 +1,153 @@
+@font-face {
+    font-family: Pattaya;
+    src: url(../bootstrap-4.3.1-dist/Font/Pattaya-Regular.ttf);
+}
+
+body {
+    font-family: sans-serif;
+    color: #333;
+    overflow-x: hidden;
+    font-size: 14px;
+}
+
+ul {
+    list-style: none;
+    list-style-type: none;
+}
+
+li a {
+    text-decoration: none;
+    display: block;
+    color: black;
+}
+
+li a:hover {
+    color: #666666;
+}
+
+li #user-icon {
+    background-image: url('../Public/images/users.png');
+    background-repeat: no-repeat;
+    background-size: 26px;
+    background-position: 0 5px;
+    padding-left: 15px;
+}
+
+li #product-icon {
+    background-image: url('./product.jpg');
+    background-repeat: no-repeat;
+    background-size: 22px;
+    background-position: 0 5px;
+    padding-left: 15px;
+}
+
+li #news-icon {
+    background-image: url('./news.png');
+    background-repeat: no-repeat;
+    background-size: 22px;
+    background-position: 0 5px;
+    padding-left: 15px;
+}
+
+li #category-icon {
+    background-image: url('./category.png');
+    background-repeat: no-repeat;
+    background-size: 18px;
+    background-position: 0 5px;
+    padding-left: 15px;
+}
+
+li #about-icon {
+    background-image: url('./about.png');
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-position: 0 5px;
+    padding-left: 15px;
+}
+
+.banner {
+    opacity: 1;
+    display: block;
+    backface-visibility: hidden;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.banner:hover img {
+    overflow: hidden !important;
+    opacity: 0.5;
+    transition: 2s;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.old-price {
+    font-size: 12px;
+    text-decoration: line-through;
+}
+
+.sale {
+    display: block;
+}
+
+.sale a{
+    text-decoration: none !important;
+}
+
+.sale h6:hover{
+    color: #008744 ;
+}
+
+.catagories-menu a {
+    text-decoration: none !important;
+    color: #0363cd;
+}
+
+.catagories-menu a:hover {
+    color: #008744;
+}
+
+.item .stars {
+    font-size: 10px;
+}
+.checked{
+    color: orange;
+}
+
+.sale h6 {
+    color: #0363cd;
+    font-weight: 500;
+}
+
+.product-price b{
+    color: #008744;
+}
+
+.product-topbar {
+    background-color: #189EFF;
+    font-size: 14px;
+    color: white;
+    padding: 0px 15px;
+    text-decoration: none;
+}
+
+.cover {
+    padding-left: 0px !important;
+    border: none;
+    border-bottom: solid 3px #189EFF;
+}
+
+.mt-30{
+    margin-top: 30px;
+}
+
+.mb-50{
+    margin-bottom: 50px;
+}
+
+.create-product{
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
+}   

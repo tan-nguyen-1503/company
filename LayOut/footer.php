@@ -3,10 +3,11 @@
     Web assignment - 2020
 </div>
     <!--End of Footer-->
-
-    <!--Thu Vien JS-->
-    <script src="./Public/script/typed.min.js"></script>
-    <script src="./Public/script/homepage.js"></script>
+<?php
+$rootUrl = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
+?>
+    <script src="<?php echo $rootUrl?>/Public/script/typed.min.js"></script>
+    <script src="<?php echo $rootUrl?>/Public/script/homepage.js"></script>
     <script>
       $('#cart-popover').popover({
         html:true,
