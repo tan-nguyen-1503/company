@@ -9,7 +9,7 @@ class Product
     private $category_id;
     public $category;
     public $price;
-    public $status;
+    public $status = 'AVAILABLE';
     public $is_active;
     public $rating;
     public $count_rating;
