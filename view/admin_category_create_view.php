@@ -15,7 +15,7 @@ $category_list = Category::getAll();
 </div>
 </div>
 </div>
-
+</div>
 </div>
 </div>
 </div>

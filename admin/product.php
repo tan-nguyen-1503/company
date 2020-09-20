@@ -13,9 +13,9 @@ if (!isset($_SESSION['isAdmin']) || !$_SESSION['isAdmin']){
                 $extension = explode('.', $imgName);
                 $extension = $extension[count($extension) - 1];
                 if ($extension == 'jpg' || $extension = 'png' || $extension = 'gif'){
-                    $imgName = md5($imgName) . $extension;
-                    if (move_uploaded_file($_FILES['file']['tmp_name'], "Public/images/user-images/" . $imgName)){
-                        Product::uploadImage($imgName, $id);
+                    $imgName = md5($imgName) . '.' . $extension;
+                    if (move_uploaded_file($_FILES['file']['tmp_name'], "../Public/images/post/" . $imgName)){
+                        Post::uploadImage($imgName, $id);
                     } else {
                         badRequestResponse("Fail to upload file");
                     }

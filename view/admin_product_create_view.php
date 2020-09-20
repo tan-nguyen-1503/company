@@ -41,7 +41,6 @@ $category_list = Category::getAll();
 <script>
     $('#create-form').submit(function (e){
         e.preventDefault();
-        // console.log("A");
         $.ajax({
             type: "POST",
             url: "product.php",
@@ -51,8 +50,7 @@ $category_list = Category::getAll();
 
             complete: function (xhr, status){
                 if (status !== 'error'){
-                    e.preventDefault();
-                    // uploadFile(xhr.responseText);
+                    uploadFile(xhr.responseText);
                 } else {
                     $("#error").html(xhr.responseText);
                 }
@@ -60,36 +58,36 @@ $category_list = Category::getAll();
         });
     });
 
-    // function uploadFile(id){
-    //     const file_data = $('#image')[0].files[0];
-    //     const extension = file_data.type;
-    //     const validImageTypes = ['image/gif', 'image/jpeg', 'image/png', 'image/jpg'];
-    //     if (!validImageTypes.includes(extension)){
-    //         $("#account-error").html("Invalid image file type");
-    //         $("#account-success").empty();
-    //         return ;
-    //     }
-    //     const form_data = new FormData();
-    //     form_data.append('file', file_data);
-    //     form_data.append('id', id);
-    //
-    //     $.ajax({
-    //         type: "POST",
-    //         dataType: "application/json",
-    //         url: "product.php"
-    //         contentType: false,
-    //         processData: false,
-    //         data: form_data,
-    //         preventDefault: true,
-    //
-    //         complete: function (xhr, status){
-    //             if (status !== 'error'){
-    //             } else {
-    //             }
-    //         }
-    //     });
-    // }
+    function uploadFile(id){
+        const file_data = $('#image')[0].files[0];
+        const extension = file_data.type;
+        const validImageTypes = ['image/gif', 'image/jpeg', 'image/png', 'image/jpg'];
+        if (!validImageTypes.includes(extension)){
+            alert("Invalid image file type");
+            return ;
+        }
+        const form_data = new FormData();
+        form_data.append('file', file_data);
+        form_data.append('id', id);
 
+        $.ajax({
+            type: "POST",
+            dataType: "application/json",
+            url: "product.php",
+            contentType: false,
+            processData: false,
+            data: form_data,
+            preventDefault: true,
+
+            complete: function (xhr, status){
+                if (status !== 'error'){
+                    alert("Upload successfully");
+                } else {
+                    alert("Fail to upload image");
+                }
+            }
+        });
+    }
 </script>
 
 <?php

@@ -10,7 +10,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title></title>
+    <title>BK Computer</title>
     <link rel="stylesheet" href="<?php echo $rootUrl?>/Public/styles/indexCss.css">
     <script src="<?php echo $rootUrl?>/Public/script/jquery.js"></script>
       <link rel="stylesheet" href="<?php echo $rootUrl?>/Public/styles/addProduct.css">
@@ -53,8 +53,9 @@
                 <?php
                     include $_SERVER['DOCUMENT_ROOT'] . '/model/Category.php';
                     $category_list = Category::getAll();
+                    echo "<a class='dropdown-item' href='$rootUrl//product.php'>All</a>";
                     foreach ($category_list as $category){
-                        echo "<a class='dropdown-item' href='$rootUrl//product.php?categoryId=?$category->id'>$category->category</a>";
+                        echo "<a class='dropdown-item' href='$rootUrl//product.php?categoryId=$category->id'>$category->category</a>";
                     }
                 ?>
             </div>

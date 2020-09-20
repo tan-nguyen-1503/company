@@ -2,9 +2,10 @@
 include 'LayOut/header.php';
 
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
-$pageSize = 5;
+$pageSize = 6;
 $post_list = Post::getActiveByPage($page - 1, $pageSize);
 $total = Post::countAllActive();
+$num_page = ceil($total / $pageSize);
 ?>
 
 <!-- Begin Breadcrumb-->
@@ -30,23 +31,23 @@ $total = Post::countAllActive();
                 <div class="card-body">
                     <img class="card-img-top img-responsive" src="<?php echo "Public/images/post/" . $post->image . "\" alt=\"" . $post->title ?>">
 <!--                    <p class="card mb-2">--><?php //echo substr($post->content, 0, 150)?><!--</p>-->
-                    <p class="card mb-2"><?php echo "By $post->author at $post->date"?></p>
-                    <a  href="post.php?id=<?php echo $post->id; ?>" class="btn btn-primary">Read More &rarr;</a>
+                    <p class="mb-2"><?php echo "By $post->author<br>at $post->date"?></p>
+                    <a  href="post.php?id=<?php echo $post->id; ?>" class="btn btn-primary mb-5">Read More &rarr;</a>
                 </div>
             </div>
     <?php } ?>
     </div>
 
     <!-- Pagination -->
-    <ul class="pagination justify-content-center mb-4 mt-5">
+    <ul class="pagination justify-content-center mb-4 mt-3">
         <li class="page-item"><a href="?page=1"  class="page-link">First</a></li>
-        <li class="<?php if($page <= 1){ echo 'disabled'; } ?> page-item">
-            <a href="<?php if($page <= 1){ echo '#'; } else { echo "?page=".($page - 1); } ?>" class="page-link">Prev</a>
+        <li class="<?php if($page == 1){ echo 'disabled'; } ?> page-item">
+            <a href="<?php if($page == 1) { echo '#'; } else { echo "?page=$page";} ?>" class="page-link">Prev</a>
         </li>
-        <li class="<?php if($page >= $total){ echo 'disabled'; } ?> page-item">
-            <a href="<?php if($page >= $total){ echo '#'; } else { echo "?page=".($page + 1); } ?> " class="page-link">Next</a>
+        <li class="<?php if($page >= $num_page){ echo 'disabled'; } ?> page-item">
+            <a href="<?php if($page >= $num_page){ echo '#'; } else { echo "?page=".($page + 1); } ?> " class="page-link">Next</a>
         </li>
-        <li class="page-item"><a href="?page=<?php echo $total; ?>" class="page-link">Last</a></li>
+        <li class="page-item"><a href="?page=<?php echo $num_page; ?>" class="page-link">Last</a></li>
     </ul>
 
 </div>

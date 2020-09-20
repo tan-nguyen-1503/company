@@ -1,5 +1,5 @@
 <!--Footer-->
-<div class="row bg-dark text-light" style="padding: 40px 40px" id="contact">
+<div class="row bg-dark text-light" style="padding: 40px 40px; margin-top: 50px" id="contact">
     Web assignment - 2020
 </div>
     <!--End of Footer-->

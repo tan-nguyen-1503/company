@@ -1,6 +1,6 @@
-<div class="container ">
+<div class="container " style="height: 100% ; padding-bottom: 50px">
     <div class="row mt-2">
-        <div class="col-12 col-md-4 col-lg-3" style="background-color: #F4F4F3;">
+        <div class="col-12 col-md-4 col-lg-3" style="background-color: #F4F4F3; margin-bottom: 50px">
             <div class="shop_sidebar_area">
                 <div class="catagory mt-2">
                     <!-- Title -->

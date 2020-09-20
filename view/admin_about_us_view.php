@@ -20,7 +20,8 @@ include_once "../LayOut/leftContentAccess.php";
                 </div>
             </div>
         </div>
-
+</div>
+</div>
     </div>
 </div
 </div>

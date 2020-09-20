@@ -11,7 +11,7 @@ include_once "../LayOut/leftContentAccess.php";
 </div>
 </div>
 </div>
-
+</div>
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/LayOut/footer.php';
 ?>

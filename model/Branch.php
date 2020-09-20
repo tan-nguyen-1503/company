@@ -22,6 +22,8 @@ class Branch
             $this->phone = $object->phone;
         if (isset($object->is_active))
             $this->is_active = $object->is_active;
+        if (isset($object->address))
+            $this->address = $object->address;
     }
 
     public function create()

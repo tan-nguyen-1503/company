@@ -37,7 +37,6 @@ class Post
         if (!runQuery($query, $param, false)){
             badRequestResponse("Fail to create post");
         }
-        return $conn->insert_id;
     }
 
     public function update()
@@ -71,7 +70,7 @@ class Post
 
     public static function getAllByPage($pageNum, $pageSize){
         $offset = $pageNum * $pageSize;
-        $query = "SELECT * FROM post ORDER BY date DESC LIMIT ? OFFSET ?";
+        $query = "SELECT p.*, u.name FROM post p LEFT JOIN user u ON p.author_id = u.id ORDER BY date DESC LIMIT ? OFFSET ?";
         $param = ["ii", &$pageSize, &$offset];
         $result = runQuery($query, $param);
         $response = [];
@@ -83,7 +82,7 @@ class Post
 
     public static function getActiveByPage($pageNum, $pageSize){
         $offset = $pageNum * $pageSize;
-        $query = "SELECT * FROM post WHERE is_active = true ORDER BY date DESC LIMIT ? OFFSET ?";
+        $query = "SELECT p.*, u.name FROM post p LEFT JOIN user u ON p.author_id = u.id WHERE p.is_active = true ORDER BY date DESC LIMIT ? OFFSET ?";
         $param = ["ii", &$pageSize, &$offset];
         $result = runQuery($query, $param);
         $response = [];
@@ -110,6 +109,14 @@ class Post
     {
         $query = "UPDATE post SET is_active = false WHERE id = ?";
         if (!runQuery($query, ["i", &$id], false)) {
+            badRequestResponse("Invalid post");
+        }
+    }
+
+    public static function uploadImage($img, $id){
+        $query = "UPDATE post SET image = ? WHERE id = ?";
+        $param = ["si", &$img, &$id];
+        if (!runQuery($query, $param, false)) {
             badRequestResponse("Invalid post");
         }
     }

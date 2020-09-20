@@ -78,7 +78,7 @@ class User
     public static function getByPage($pageNum, $pageSize){
         $offset = $pageNum * $pageSize;
         $query = "SELECT * FROM user LIMIT ? OFFSET ?";
-        $param = ["ii", $pageSize, $offset];
+        $param = ["ii", &$pageSize, &$offset];
         $result = runQuery($query, $param);
         $response = [];
         while ($row = $result->fetch_object()) {
